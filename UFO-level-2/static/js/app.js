@@ -10,16 +10,11 @@ var tbody = d3.select('tbody');
 window.onload = loadData();
 
 
-// CLICK AND ENTER FILTER
+// CLICK COMMANDS
 // ----------------------------------------- //
 
 // Capture input tag
 var form = d3.select("form");
-
-// If the user clicks outside the input box
-form.on("submit", massFilter);
-
-// form.on("change", massFilter);
 
 // Capture Filter Table button tag
 var filterButton = d3.select('button');
@@ -31,14 +26,13 @@ filterButton.on("click", massFilter);
 var allButtons = d3.selectAll('button');
 var resetButton = d3.select(allButtons._groups[0][1]);
 
-console.log(resetButton);
-
 // If the user clicks the reset table button
 resetButton.on("click", loadData);
 
 // FUNCTIONS
 // ----------------------------------------- //
 
+// Function to load original data to the page. Shows on load of page and when user clicks Reset Table button
 function loadData () {
 
     // CLEAR FILTER SEARCH
@@ -55,7 +49,8 @@ function loadData () {
         });
     
 
-    // 
+    // CREATE TABLE SKELETON 
+    // --------------------------//
     // Delete all 'tr' and 'td' tags
     tbody.remove();
 
@@ -63,6 +58,9 @@ function loadData () {
     var table = d3.select('table');
     tbody = table.append('tbody');
 
+
+    // ADD ORIGINAL DATA TO TABLE
+    // --------------------------//
     tableData.forEach((ufoInstance) => {
         // console.log(ufoInstance);
         var row = tbody.append('tr');
@@ -73,10 +71,10 @@ function loadData () {
             cell.text(value);
         });
     });
-
 }
 
 
+// Function to filter the table by users input. Activates when filter table button is clicked
 function massFilter () {
 
     // Prevent the page from refreshing
@@ -109,6 +107,7 @@ function massFilter () {
     // Iterate through each ufo instance
     tableData.forEach(ufoInstance => {
         
+        // Iterate through all keys (total of 5)
         for (var j = 0; j < userInput.length; j++)  {
             
             // Define current user key 
@@ -129,8 +128,6 @@ function massFilter () {
             // console.log(j);
         }
     }); 
-
-    console.log(filteredData);
 
     // Delete all 'tr' and 'td' tags
     tbody.remove();
