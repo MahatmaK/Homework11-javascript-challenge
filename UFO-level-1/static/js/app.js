@@ -30,7 +30,7 @@ form.on("submit", dateFilter);
 
 form.on("change", dateFilter);
 
-// Caputure button tag
+// Capture button tag
 var button = d3.select('button');
 
 // If the user clicks the button
@@ -74,7 +74,7 @@ function dateFilter () {
     }
 
     else {
-        var filteredData = data.filter(ufoSighting => ufoSighting.datetime === userValue);     
+        var filteredData = tableData.filter(ufoSighting => ufoSighting.datetime === userValue);     
         
         filteredData.forEach((ufoInstance) => {
             
