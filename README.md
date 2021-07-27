@@ -1,5 +1,5 @@
-# Homework11_javascript-challenge
-The repository for Homework 11
+# Javascript
+The repository for a Javascript project
 
 Files to submitted:
 -----------------------------
